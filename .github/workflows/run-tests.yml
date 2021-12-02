@@ -1,0 +1,26 @@
+name: Clojure CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Prepare Java
+      uses: actions/setup-java@v2
+      with:
+        distribution: adopt
+        java-version: "16"
+    - name: Install clojure tools
+      uses: DeLaGuardo/setup-clojure@3.5
+      with:
+        cli: 1.10.3.1029
+    - name: Run Unit Tests
+      run: clojure -M:test
