@@ -9,10 +9,12 @@
 (def sample-directions
   (with-open [rdr (io/reader (io/resource "day_2/input.txt"))]
     (reduce (fn [instructions line]
-    (let [line (str/split line #" ")
-          direction (keyword (first line))
-          amount (edn/read-string (second line))]
-          (conj instructions [direction amount]))) [] (line-seq rdr))))
+              (let [line (str/split line #" ")
+                    direction (keyword (first line))
+                    amount (edn/read-string (second line))]
+                (conj instructions [direction amount])))
+            []
+            (line-seq rdr))))
 
 (deftest navigate-test
   (let [start {:depth 0 :position 0}]
