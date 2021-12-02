@@ -15,11 +15,22 @@
                                              ::position]))
 
 (defn navigate
+  "Direct translation of the sub"
   [current direction amount]
   (let [delta (case direction
                 :forward {:position amount}
                 :down {:depth amount}
                 :up {:depth (- amount)})]
+    (merge-with + current delta)))
+
+(defn navigate-with-aim
+  "Move the sub taking pitch into account"
+  [current direction amount]
+  (let [delta (case direction
+                :forward {:position amount
+                          :depth (* (:aim current) amount)}
+                :down {:aim amount}
+                :up {:aim (- amount)})]
     (merge-with + current delta)))
 
 (comment
