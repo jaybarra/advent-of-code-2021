@@ -37,6 +37,7 @@
           792]
          (sliding-window sample-depths 3)))
 
+
   (are [input expected] (= expected (depth-increased-count (sliding-window input 3)))
     sample-depths 5
     depths 1486))
