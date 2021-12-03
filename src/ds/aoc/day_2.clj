@@ -1,18 +1,4 @@
-(ns ds.aoc.day-2
-  (:require
-   [clojure.spec.alpha :as spec]))
-
-(def directions #{:forward :down :up})
-
-(spec/def ::direction directions)
-(spec/def ::number number?)
-(spec/def ::command (spec/cat :direction ::direction
-                              :amount ::number))
-(spec/def ::depth ::number)
-(spec/def ::position ::number)
-
-(spec/def ::sub-position (spec/keys :req-un [::depth
-                                             ::position]))
+(ns ds.aoc.day-2)
 
 (defn navigate
   "Direct translation of the sub"
